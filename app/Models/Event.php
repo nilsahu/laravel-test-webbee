@@ -7,4 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+
+	/**
+     * This function used to create relation between event and workshop
+    */
+	public function workshop() 
+    {
+        return $this->hasMany(Workshop::class);
+    }
 }
