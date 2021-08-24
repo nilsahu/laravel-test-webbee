@@ -11,7 +11,7 @@ class Event extends Model
 	/**
      * This function used to create relation between event and workshop
     */
-	public function workshop() 
+	public function workShop() 
     {
         return $this->hasMany(Workshop::class);
     }

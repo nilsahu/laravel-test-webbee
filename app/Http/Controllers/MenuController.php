@@ -95,6 +95,26 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
-        throw new \Exception('implement in coding task 3');
+        $result = MenuItem::get()->toArray();
+        return $this->makeHierarchy($result);
+        //throw new \Exception('implement in coding task 3');
     }
+
+    protected function makeHierarchy(array $result, $parentId = null) {
+        $array = array();
+        foreach ($result as $value)
+        {
+            if ($value['parent_id'] == $parentId)
+            {
+                $children = $this->makeHierarchy($result, $value['id']);
+                if ($children)
+                {
+                    $value['children'] = $children;
+                }
+                $array[] = $value;
+            }
+        }
+        return $array;
+    }
+
 }
